@@ -6,10 +6,11 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-// const { sequelize } = require('./models');
+const { sequelize } = require('./models');
 
 var app = express();
 
+//getting error here. not goes away when i comment out 
 //connect ot db
 const Sequelize = require('sequelize')
 // Passing parameters separately (sqlite)
@@ -42,7 +43,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
+  var err = new Error('Page Not Found');
   err.status= 404
   err.message = 'Page Not Found'
   res.render('page-not-found', {err})
