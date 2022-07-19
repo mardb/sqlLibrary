@@ -6,7 +6,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-const { sequelize } = require('./models');
+// const { sequelize } = require('./models');
 
 var app = express();
 
