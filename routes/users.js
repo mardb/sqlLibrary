@@ -44,7 +44,7 @@ router.post(
     try {
       book = await Book.create(req.body);
       //where should it go? books or books/id?? ahh!!!
-      res.redirect('/books/' + book.id);
+      res.redirect('/books/');
       // res.redirect('/');
     } catch (err) {
       if (error.name === "SequelizeValidationError") {
@@ -70,13 +70,14 @@ router.get('/:id', asyncHandler(async(req, res) => {
 }))
 
 /* POST /books/:id - Updates book info in the database */
-router.post('/books/:id', asyncHandler(async(req, res) => {
+router.post('/:id', asyncHandler(async(req, res) => {
   let book;
   try{
     book = await Book.findByPk(req.params.id);
   if(book){
     await book.update(req.body);
-    res.redirect('/books/' + books.id)
+    res.redirect('/') //this is the right code
+    // res.render('book-added', {title: "Book Added"})
   } else {
  res.render('page-not-found', {title: "Page Not Found"});
   }
