@@ -45,6 +45,7 @@ router.post(
       book = await Book.create(req.body);
       //where should it go? books or books/id?? ahh!!!
       res.redirect('/books/' + book.id);
+      // res.redirect('/');
     } catch (err) {
       if (error.name === "SequelizeValidationError") {
         //checking the error
