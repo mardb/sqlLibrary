@@ -49,8 +49,6 @@ app.use(function(req, res, next) {
   res.render('page-not-found', {err})
 });
 
-
-//---------------
 //Global error handler 
 app.use((err, req, res, next) => {
   if(err){
@@ -62,9 +60,6 @@ app.use((err, req, res, next) => {
   } else {
     err.message = err.message || `Oops! looks like something went wrong on the server.`;
     res.locals.error = err;
-    //same as bottom line  77
-     // render the error page
-  //   res.status(err.status || 500).render('error', {err})
   }
 });
 

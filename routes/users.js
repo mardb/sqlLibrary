@@ -91,7 +91,7 @@ router.post(
       book = await Book.findByPk(req.params.id);
       if (book) {
         await book.update(req.body);
-        res.redirect('/'); //this is the right code
+        res.redirect('/'); 
         // res.render('book-added', {title: "Book Added"})
       } else {
         res.render('page-not-found', { title: 'Page Not Found' });
@@ -129,12 +129,3 @@ router.post(
 
 module.exports = router;
 
-// Set up routes
-// At the very least, you will need the following routes:
-// get / - Home route should redirect to the /books route
-// get /books - Shows the full list of books
-// get /books/new - Shows the create new book form
-// post /books/new - Posts a new book to the database
-// get /books/:id - Shows book detail form
-// post /books/:id - Updates book info in the database
-// post /books/:id/delete - Deletes a book. Careful, this can’t be undone. It can be helpful to create a new “test” book to test deleting
