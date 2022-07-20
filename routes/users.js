@@ -10,6 +10,7 @@ function asyncHandler(cb) {
     } catch (error) {
       // Forward error to the global error handler
       next(error);
+      // res.render('error', {error:error})
     }
   };
 }
@@ -23,18 +24,23 @@ function asyncHandler(cb) {
 // }));
 
 // /* GET /books listing. */
-router.get('/', asyncHandler(async (req, res) => {
+router.get(
+  '/',
+  asyncHandler(async (req, res) => {
     const books = await Book.findAll();
     res.render('index', { books, title: 'Books' });
   })
 );
 
 //GET - new book form
-router.get('/new', asyncHandler(async(req, res) => {
-  // const books = await Book.findAll();
-  // console.log(books);
-  res.render('new-book', { book: {}, title: 'New Book' });
-}))
+router.get(
+  '/new',
+  asyncHandler(async (req, res) => {
+    // const books = await Book.findAll();
+    // console.log(books);
+    res.render('new-book', { book: {}, title: 'New Book' });
+  })
+);
 
 /* POST /books/new - Posts a new book to the database */
 router.post(
@@ -46,11 +52,15 @@ router.post(
       //where should it go? books or books/id?? ahh!!!
       res.redirect('/books/');
       // res.redirect('/');
-    } catch (err) {
-      if (error.name === "SequelizeValidationError") {
+    } catch (error) {
+      if (error.name === 'SequelizeValidationError') {
         //checking the error
         book = await Book.build(req.body);
-        res.render('new-book', {book, errors: error.errors, title: "New Book"})
+        res.render('new-book', {
+          book,
+          errors: error.errors,
+          title: 'New Book',
+        });
       } else {
         throw error;
       }
@@ -59,54 +69,63 @@ router.post(
 );
 
 /* GET /books/:id - Shows book detail form */
-router.get('/:id', asyncHandler(async(req, res) => {
-  const book = await Book.findByPk(req.params.id);
-  if(book) {
-    res.render('update-book', {book, title: book.title})
-  } else {
-    next();
-    // res.render('page-not-found',{tile: "Page Not Found"})
-  }
-}))
+router.get(
+  '/:id',
+  asyncHandler(async (req, res) => {
+    const book = await Book.findByPk(req.params.id);
+    if (book) {
+      res.render('update-book', { book, title: book.title });
+    } else {
+      // next();
+      res.render('page-not-found', { tile: 'Page Not Found' });
+    }
+  })
+);
 
 /* POST /books/:id - Updates book info in the database */
-router.post('/:id', asyncHandler(async(req, res) => {
-  let book;
-  try{
-    book = await Book.findByPk(req.params.id);
-  if(book){
-    await book.update(req.body);
-    res.redirect('/') //this is the right code
-    // res.render('book-added', {title: "Book Added"})
-  } else {
- res.render('page-not-found', {title: "Page Not Found"});
-  }
-} catch(error){
-  if(error.name === 'SequelizeValidationError'){
-    book = await Book.build(req.body);
-    book.id = req.params.id; //make sure correct book gets updated
-    res.render('update-book', {
-      book,
-      errors: error.errors,
-      title: book.title,
-    });
-  } else {
-    throw error;
-  }
-}
-}))
+router.post(
+  '/:id',
+  asyncHandler(async (req, res) => {
+    let book;
+    try {
+      book = await Book.findByPk(req.params.id);
+      if (book) {
+        await book.update(req.body);
+        res.redirect('/'); //this is the right code
+        // res.render('book-added', {title: "Book Added"})
+      } else {
+        res.render('page-not-found', { title: 'Page Not Found' });
+      }
+    } catch (error) {
+      if (error.name === 'SequelizeValidationError') {
+        book = await Book.build(req.body);
+        // book.id = req.params.id; //make sure correct book gets updated
+        res.render('update-book', {
+          book,
+          errors: error.errors,
+          title: book.title,
+        });
+        res.render('/');
+      } else {
+        throw error;
+      }
+    }
+  })
+);
 
 /* post /books/:id/delete - Deletes an individual book. Careful, this can’t be undone. It can be helpful to create a new “test” book to test deleting */
-router.post('/:id/delete', asyncHandler(async(req, res) => {
-  let book = await Book.findByPk(req.params.id);
-  if(book){
-    await book.destroy();
-    res.redirect('/')
-  } else {
-    res.render('page-not-found', {title: "Page Not Found"})
-  }
-}))
-
+router.post(
+  '/:id/delete',
+  asyncHandler(async (req, res) => {
+    let book = await Book.findByPk(req.params.id);
+    if (book) {
+      await book.destroy();
+      res.redirect('/');
+    } else {
+      res.render('page-not-found', { title: 'Page Not Found' });
+    }
+  })
+);
 
 module.exports = router;
 
