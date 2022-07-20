@@ -1,170 +1,23 @@
 extends layout 
 
-block content
-  body
-    h1 Books
-    | &#x9;
-    p
-      a.button(href='new_book.html') Create New Book
-    | &#x9;
-    table
-      thead
-        tr
-          th Title
-          | &#x9;&#x9;&#x9;&#x9;
-          th Author
-          | &#x9;&#x9;&#x9;&#x9;
-          th Genre
-          | &#x9;&#x9;&#x9;&#x9;
-          th Year
-      | &#x9;&#x9;
-      tbody
-        tr
-          td
-            a(href='book_detail.html') The Hunger Games
-          | &#x9;&#x9;&#x9;&#x9;
-          td Suzanne Collins
-          | &#x9;&#x9;&#x9;&#x9;
-          td Fantasy
-          | &#x9;&#x9;&#x9;&#x9;
-          td 2008
-        | &#x9;&#x9;&#x9;
-        tr
-          td
-            a(href='book_detail.html') Catching Fire
-          | &#x9;&#x9;&#x9;&#x9;
-          td Suzanne Collins
-          | &#x9;&#x9;&#x9;&#x9;
-          td Fantasy
-          | &#x9;&#x9;&#x9;&#x9;
-          td 2009
-        | &#x9;&#x9;&#x9;
-        tr
-          td
-            a(href='book_detail.html') Mockingjay
-          | &#x9;&#x9;&#x9;&#x9;
-          td Suzanne Collins
-          | &#x9;&#x9;&#x9;&#x9;
-          td Fantasy
-          | &#x9;&#x9;&#x9;&#x9;
-          td 2010
-        | &#x9;&#x9;&#x9;
-        tr
-          td
-            a(href='book_detail.html') The Ballad of Songbirds and Snakes
-          | &#x9;&#x9;&#x9;&#x9;
-          td Suzanne Collins
-          | &#x9;&#x9;&#x9;&#x9;
-          td Fantasy
-          | &#x9;&#x9;&#x9;&#x9;
-          td 2020
-        | &#x9;&#x9;&#x9;
-        tr
-          td
-            a(href='book_detail.html') The Memory Police
-          | &#x9;&#x9;&#x9;&#x9;
-          td Yoko Ogawa
-          | &#x9;&#x9;&#x9;&#x9;
-          td Science Fiction
-          | &#x9;&#x9;&#x9;&#x9;
-          td 1994
-        | &#x9;&#x9;&#x9;
-        tr
-          td
-            a(href='book_detail.html') Nickel Boys
-          | &#x9;&#x9;&#x9;&#x9;
-          td Colson Whitehead
-          | &#x9;&#x9;&#x9;&#x9;
-          td Historical Fiction
-          | &#x9;&#x9;&#x9;&#x9;
-          td 2019
-        | &#x9;&#x9;&#x9;
-        tr
-          td
-            a(href='book_detail.html') The Book of Unknown Americans
-          | &#x9;&#x9;&#x9;&#x9;
-          td Cristina Henriquez
-          | &#x9;&#x9;&#x9;&#x9;
-          td Fiction
-          | &#x9;&#x9;&#x9;&#x9;
-          td 2014
-        | &#x9;&#x9;&#x9;
-        tr
-          td
-            a(href='book_detail.html') A Brief History of Time
-          | &#x9;&#x9;&#x9;&#x9;
-          td Stephen Hawking
-          | &#x9;&#x9;&#x9;&#x9;
-          td Non Fiction
-          | &#x9;&#x9;&#x9;&#x9;
-          td 1988
-        | &#x9;&#x9;&#x9;
-        tr
-          td
-            a(href='book_detail.html') Armada
-          | &#x9;&#x9;&#x9;&#x9;
-          td Ernest Cline
-          | &#x9;&#x9;&#x9;&#x9;
-          td Science Fiction
-          | &#x9;&#x9;&#x9;&#x9;
-          td 2015
-        | &#x9;&#x9;&#x9;
-        tr
-          td
-            a(href='book_detail.html') Emma
-          | &#x9;&#x9;&#x9;&#x9;
-          td Jane Austen
-          | &#x9;&#x9;&#x9;&#x9;
-          td Classic
-          | &#x9;&#x9;&#x9;&#x9;
-          td 1815
-        | &#x9;&#x9;&#x9;
-        tr
-          td
-            a(href='book_detail.html') Frankenstein
-          | &#x9;&#x9;&#x9;&#x9;
-          td Mary Shelley
-          | &#x9;&#x9;&#x9;&#x9;
-          td Horror
-          | &#x9;&#x9;&#x9;&#x9;
-          td 1818
-        | &#x9;&#x9;&#x9;
-        tr
-          td
-            a(href='book_detail.html') Pride and Prejudice
-          | &#x9;&#x9;&#x9;&#x9;
-          td Jane Austen
-          | &#x9;&#x9;&#x9;&#x9;
-          td Classic
-          | &#x9;&#x9;&#x9;&#x9;
-          td 1813
-        | &#x9;&#x9;&#x9;
-        tr
-          td
-            a(href='book_detail.html') Ready Player One
-          | &#x9;&#x9;&#x9;&#x9;
-          td Ernest Cline
-          | &#x9;&#x9;&#x9;&#x9;
-          td Science Fiction
-          | &#x9;&#x9;&#x9;&#x9;
-          td 2011
-        | &#x9;&#x9;&#x9;
-        tr
-          td
-            a(href='book_detail.html') The Martian
-          | &#x9;&#x9;&#x9;&#x9;
-          td Andy Weir
-          | &#x9;&#x9;&#x9;&#x9;
-          td Science Fiction
-          | &#x9;&#x9;&#x9;&#x9;
-          td 2014
-        | &#x9;&#x9;&#x9;
-        tr
-          td
-            a(href='book_detail.html') The Universe in a Nutshell
-          | &#x9;&#x9;&#x9;&#x9;
-          td Stephen Hawking
-          | &#x9;&#x9;&#x9;&#x9;
-          td Non Fiction
-          | &#x9;&#x9;&#x9;&#x9;
-          td 2001
+block  content
+    h1 New Book
+    //errors
+
+    form(actions="/books/new" method="post")
+      p
+        label(for='title') Title
+        input#title(name='title', type='text')
+      p
+        label(for='author') Author
+        input#author(name='author', type='text')
+      p
+        label(for='genre') Genre
+        input#genre(name='genre', type='text')
+      p
+        label(for='year') Year
+        input#year(name='year', type='text')
+      p
+        input(type='submit', value='Create New Book')
+      p
+        a.button(href='/') Cancel

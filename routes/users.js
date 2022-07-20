@@ -13,20 +13,24 @@ function asyncHandler(cb) {
     }
   };
 }
-//pasted from index.js
-router.get('/', asyncHandler(async (req, res, next) => {
-  res.redirect('/books')
-}));
+// //pasted from index.js
+// router.get('/', asyncHandler(async (req, res, next) => {
+//   //just added this so comment out and try with res.redirect('/books)
+//   Book.findAll().then(function(books){
+//     res.render('/books')
+//   })
+//   // res.redirect('/books')
+// }));
 
 // /* GET /books listing. */
-router.get('/books', asyncHandler(async (req, res) => {
+router.get('/', asyncHandler(async (req, res) => {
     const books = await Book.findAll();
     res.render('index', { books, title: 'Books' });
   })
 );
 
 //GET - new book form
-router.get('/books/new', asyncHandler(async(req, res) => {
+router.get('/new', asyncHandler(async(req, res) => {
   // const books = await Book.findAll();
   // console.log(books);
   res.render('new-book', { book: {}, title: 'New Book' });
@@ -34,13 +38,13 @@ router.get('/books/new', asyncHandler(async(req, res) => {
 
 /* POST /books/new - Posts a new book to the database */
 router.post(
-  '/books/new',
+  '/new',
   asyncHandler(async (req, res) => {
     let book;
     try {
       book = await Book.create(req.body);
       //where should it go? books or books/id?? ahh!!!
-      res.redirect('/books/' + book.id);
+      res.redirect('/' + book.id);
     } catch (err) {
       if (error.name === "SequelizeValidationError") {
         //checking the error
@@ -54,7 +58,7 @@ router.post(
 );
 
 /* GET /books/:id - Shows book detail form */
-router.get('/books/:id', asyncHandler(async(req, res) => {
+router.get('/:id', asyncHandler(async(req, res) => {
   const book = await Book.findByPk(req.params.id);
   if(book) {
     res.render('update-book', {book, title: book.title})
@@ -65,13 +69,13 @@ router.get('/books/:id', asyncHandler(async(req, res) => {
 }))
 
 /* POST /books/:id - Updates book info in the database */
-router.post('/books/:id', asyncHandler(async(req, res) => {
+router.post('/:id', asyncHandler(async(req, res) => {
   let book;
   try{
     book = await Book.findByPk(req.params.id);
   if(book){
     await book.update(req.body);
-    res.redirect('/books')
+    res.redirect('/')
   } else {
  res.render('page-not-found', {title: "Page Not Found"});
   }
@@ -91,11 +95,11 @@ router.post('/books/:id', asyncHandler(async(req, res) => {
 }))
 
 /* post /books/:id/delete - Deletes an individual book. Careful, this can’t be undone. It can be helpful to create a new “test” book to test deleting */
-router.post('/books/:id/delete', asyncHandler(async(req, res) => {
+router.post('/:id/delete', asyncHandler(async(req, res) => {
   let book = await Book.findByPk(req.params.id);
   if(book){
     await book.destroy();
-    res.redirect('/books')
+    res.redirect('/')
   } else {
     res.render('page-not-found', {title: "Page Not Found"})
   }

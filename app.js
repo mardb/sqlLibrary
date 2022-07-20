@@ -40,7 +40,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/books', usersRouter);
 
 app.use(function(req, res, next) {
   var err = new Error('Page Not Found');
