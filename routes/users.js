@@ -58,8 +58,8 @@ router.post(
         book = await Book.build(req.body);
         res.render('new-book', {
           book,
-          errors: error.errors,
           title: 'New Book',
+          errors: error.errors,
         });
       } else {
         throw error;
