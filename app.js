@@ -6,19 +6,18 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-// const { sequelize } = require('./models');
 
 var app = express();
 
-//getting error here. not goes away when i comment out 
-//connect ot db
+//Sequelize instance connects database
 const Sequelize = require('sequelize')
-// Passing parameters separately (sqlite)
+
 const sequelize = new Sequelize({
   dialect: 'sqlite',
   storage: 'library.db',
 });
-// //async IIFE
+// test if the connection is OK
+// //async IIFE 
  (async () => {
   await sequelize.sync();
   try {
